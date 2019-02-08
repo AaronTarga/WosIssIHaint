@@ -32,7 +32,7 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 
 ## Screenshots
 
-<img src="https://www.targaserver.com/images/Home.png" alt="Homepage" width="200"/>
-<img src="https://www.targaserver.com/images/List.png" alt="Liste" width="200"/>
+<img src="https://www.targaserver.com/images/Home.png" alt="Homepage" width="500"/>
+<img src="https://www.targaserver.com/images/List.png" alt="Liste" width="500"/>
 
 
