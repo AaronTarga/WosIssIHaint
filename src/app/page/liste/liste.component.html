@@ -1,0 +1,16 @@
+<main-nav>
+  <app-filter *ngIf='links != null' [count]='links.length'></app-filter>
+  <h2 style=' vertical-align: middle; text-align: center;'*ngIf='links != null && links.length == 0'>Keine Restaurants gefunden</h2>
+  <cdk-virtual-scroll-viewport itemSize="50" *ngIf='links != null && links.length > 0' (scrolledIndexChange)='nextBatch($event, (links[links.length - 1].id))'>
+      <li [routerLink]="'/restaurant/' + link.id" *cdkVirtualFor="let link of links" >
+        <h4 style='display: inline-block' mat-line>{{ link.name.startsWith("(KEIN MITGLIED)") ? link.name.substr(16) : link.name }}</h4>
+        <button mat-icon-button (click)="toggleFavorite(link.id); $event.preventDefault(); $event.stopPropagation();">
+          <mat-icon *ngIf="isFavorite(link.id)">star</mat-icon>
+          <mat-icon *ngIf="!isFavorite(link.id)">star_border</mat-icon>
+        </button>
+      </li>
+  </cdk-virtual-scroll-viewport>
+  <mat-progress-spinner color="accent" mode="indeterminate" diameter="50" style="margin: 2em auto;" *ngIf="links == null"></mat-progress-spinner>
+</main-nav>
+
+

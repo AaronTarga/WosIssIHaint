@@ -1,0 +1,49 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport="true"
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="!(isHandset$ | async)">
+    <mat-toolbar>Menu</mat-toolbar>
+    <mat-nav-list>
+      <a mat-list-item routerLink="/">Karte</a>
+      <a mat-list-item routerLink="/verlauf">Verlauf</a>
+      <a mat-list-item routerLink="/favoriten">Favoriten</a>
+      <a mat-list-item routerLink="/liste/">Liste</a>
+      <mat-list-item>
+      <h4>Settings:</h4>
+      </mat-list-item>
+      <mat-list-item>
+        Radius:  {{settings.radius}}km
+        <mat-slider
+        thumbLabel
+        [displayWith]="formatLabel"
+        tickInterval="1"
+        [(ngModel)]="settings.radius"
+        min="1"
+        max="100"></mat-slider>
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="!router.url.includes('/restaurant/') && isHandset$ | async ">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <a mat-icon-button (click)="backClicked()" *ngIf='router.url.includes("/restaurant/")'>
+        <mat-icon>arrow_back</mat-icon>
+      </a>
+
+      <span>WosIssIHaint</span>
+    </mat-toolbar>
+
+    <main>
+      <ng-content></ng-content>
+    </main>
+
+  </mat-sidenav-content>
+</mat-sidenav-container>

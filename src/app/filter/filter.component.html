@@ -1,0 +1,79 @@
+<mat-expansion-panel>
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      Filter
+    </mat-panel-title>
+    <mat-panel-description>
+      {{count ? count + ' Restaurants' : '' }}
+    </mat-panel-description>
+  </mat-expansion-panel-header>
+  <mat-form-field >
+    <mat-select placeholder='Küche'[formControl]="cuisine" multiple>
+      <mat-select-trigger>
+        {{cuisine.value ? cuisine.value[0] : ''}}
+        <span *ngIf="cuisine.value?.length > 1" class="example-additional-selection">
+          (+{{cuisine.value.length - 1}})
+        </span>
+      </mat-select-trigger>
+      <mat-option *ngFor="let cuisine of cuisineList" [value]="cuisine">{{cuisine}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field >
+    <mat-select placeholder='Zusatz'[formControl]="addition" multiple>
+      <mat-select-trigger>
+        {{addition.value ? addition.value[0] : ''}}
+        <span *ngIf="addition.value?.length > 1" class="example-additional-selection">
+          (+{{addition.value.length - 1}})
+        </span>
+      </mat-select-trigger>
+      <mat-option *ngFor="let addition of additionList" [value]="addition">{{addition}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field >
+    <mat-select placeholder='Kreditkarte'[formControl]="creditcard" multiple>
+      <mat-select-trigger>
+        {{creditcard.value ? creditcard.value[0] : ''}}
+        <span *ngIf="creditcard.value?.length > 1" class="example-additional-selection">
+          (+{{creditcard.value.length - 1}})
+        </span>
+      </mat-select-trigger>
+      <mat-option *ngFor="let creditcard of creditcardList" [value]="creditcard">{{creditcard}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field >
+    <mat-select placeholder='Auszeichnungen'[formControl]="seal" multiple>
+      <mat-select-trigger>
+        {{seal.value ? seal.value[0] : ''}}
+        <span *ngIf="seal.value?.length > 1" class="example-additional-selection">
+          (+{{seal.value.length - 1}})
+        </span>
+      </mat-select-trigger>
+      <mat-option *ngFor="let seal of sealList" [value]="seal">{{seal}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field >
+    <mat-select placeholder='Kategorie'[formControl]="category" multiple>
+      <mat-select-trigger>
+        {{category.value ? category.value[0] : ''}}
+        <span *ngIf="category.value?.length > 1" class="example-additional-selection">
+          (+{{category.value.length - 1}})
+        </span>
+      </mat-select-trigger>
+      <mat-option *ngFor="let category of categoryList" [value]="category">{{category}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field >
+    <mat-select placeholder='Gericht'[formControl]="dish" multiple>
+      <mat-select-trigger>
+        {{dish.value ? dish.value[0] : ''}}
+        <span *ngIf="dish.value?.length > 1" class="example-additional-selection">
+          (+{{dish.value.length - 1}})
+        </span>
+      </mat-select-trigger>
+      <mat-option *ngFor="let dish of dishList" [value]="dish">{{dish}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <button (click)="filter()" style="margin: 10px" mat-raised-button color="accent">Apply</button>
+  <button (click)="clear()" style="margin: 10px" mat-raised-button color="accent">Clear</button>
+</mat-expansion-panel>

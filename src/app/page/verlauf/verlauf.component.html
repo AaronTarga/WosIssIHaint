@@ -1,0 +1,13 @@
+<main-nav>
+  <h2 style=' vertical-align: middle; text-align: center;'*ngIf='links != null && links.length == 0'>Keine Verlauf</h2>
+  <mat-nav-list  *ngIf="links != null">
+    <a mat-list-item [routerLink]="'/restaurant/' + link['Id']" *ngFor="let link of links">
+      <h4 mat-line>{{ link['Shortname'].startsWith("(KEIN MITGLIED)") ? link['Shortname'].substr(16) : link['Shortname'] }}</h4>
+      <button mat-icon-button (click)="toggleFavorite(link['Id']); $event.preventDefault(); $event.stopPropagation();">
+        <mat-icon *ngIf="isFavorite(link['Id'])">star</mat-icon>
+        <mat-icon *ngIf="!isFavorite(link['Id'])">star_border</mat-icon>
+      </button>
+    </a>
+  </mat-nav-list>
+  <mat-progress-spinner color="accent" mode="indeterminate" diameter="50" style="margin: 2em auto;" *ngIf="links == null"></mat-progress-spinner>
+</main-nav>

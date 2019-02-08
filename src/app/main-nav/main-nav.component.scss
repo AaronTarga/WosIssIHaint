@@ -1,0 +1,38 @@
+@import '../../variables.scss';
+
+.sidenav-container {
+  height: 100%;
+}
+
+.sidenav {
+  width: 200px;
+}
+
+.sidenav, .mat-toolbar, mat-sidenav, .mat-list-item {
+  background: mat-color($primary);
+  color: mat-color($primary, default-contrast);
+}
+
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+
+}
+main {
+  height: 100%;
+  position: relative;
+}
+
+.map {
+  height: 100%;
+}
+
+.example-fill-remaining-space {
+  flex: 1 1 auto;
+}
+
+.example-additional-selection {
+  opacity: 0.75;
+  font-size: 0.75em;
+}

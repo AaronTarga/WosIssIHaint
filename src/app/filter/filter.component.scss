@@ -1,0 +1,9 @@
+mat-form-field {
+  margin: 16px;
+}
+
+@media only screen and (max-width: 600px) {
+  mat-select {
+    display: block;
+  }
+}

@@ -1,0 +1,70 @@
+<main-nav>
+  <main *ngIf="!loading && data != null">
+    <header>
+      <h1>{{(data | async)?.Shortname.startsWith("(KEIN MITGLIED)") ? (data | async)?.Shortname.substr(16) : (data | async)?.Shortname}}</h1>
+    </header>
+    <img *ngIf="(data | async)?.ImageGallery.length != 0" src="{{ (data | async)?.ImageGallery[0].ImageUrl }}">
+    <mat-card>
+      <mat-card-header>
+        <mat-icon mat-card-avatar>description</mat-icon>
+        <mat-card-title>Beschreibung</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p  innerHTML="{{ (data | async)?.Detail['de']['BaseText'] }}"> </p>
+      </mat-card-content>
+    </mat-card>
+    <mat-card>
+      <mat-card-header>
+        <mat-icon mat-card-avatar>phone</mat-icon>
+        <mat-card-title>Kontakt</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div>
+          <span>Tel: </span><a href="tel:{{(data | async)?.ContactInfos['de']['Email']}}">{{(data | async)?.ContactInfos['de']['Faxnumber']}} </a>
+        </div>
+        <div>
+          <span>Email: </span><a href="mailto:{{(data | async)?.ContactInfos['de']['Email']}}">{{(data | async)?.ContactInfos['de']['Email']}} </a>
+        </div>
+        <div>
+            <span>Url: </span><a href="{{(data | async)?.ContactInfos['de']['Url']}}">{{(data | async)?.ContactInfos['de']['Url']}} </a>
+          </div>
+      </mat-card-content>
+    </mat-card>
+    <mat-card>
+      <mat-card-header>
+        <mat-icon mat-card-avatar>location_on</mat-icon>
+        <mat-card-title>Adresse</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p>{{ (data | async)?.ContactInfos['de']['Address'] }} {{ (data | async)?.ContactInfos['de']['City'] }} {{ (data | async)?.ContactInfos['de']['ZipCode'] }}</p>
+        <a style="text-decoration: none;" [routerLink]="'/home/' + (data | async)?.Id">Restaurant auf Karte anzeigen</a>
+      </mat-card-content>
+    </mat-card>
+    <mat-card>
+      <mat-card-header>
+        <mat-icon mat-card-avatar>restaurant</mat-icon>
+        <mat-card-title>Kategorie</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+          <mat-list>
+            <mat-list-item *ngFor="let result of data | async | keys:'CategoryCodes'">
+              {{ result.Shortname }}
+            </mat-list-item>
+          </mat-list>
+      </mat-card-content>
+    </mat-card>
+    <mat-card>
+      <mat-card-header>
+        <mat-icon mat-card-avatar>info</mat-icon>
+        <mat-card-title>Zus&auml;tzliche Infos</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+          <mat-list>
+              <mat-list-item *ngFor="let result of data | async | keys:'Facilities'">
+                {{ result.Shortname }}
+              </mat-list-item>
+            </mat-list>
+      </mat-card-content>
+    </mat-card>
+  </main>
+</main-nav>
